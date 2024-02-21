@@ -46,10 +46,14 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ViewStorage()),
-              );
+              Navigator.of(context).pop();
+              Future.delayed(const Duration(milliseconds: 250), () {
+                Navigator.pushReplacement(
+                  context,
+                  NoAnimationRoute(
+                      myPageBuilder: (context) => const ViewStorage()),
+                );
+              });
             },
           ),
           ListTile(
@@ -60,10 +64,14 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ViewStorage()),
-              );
+              Navigator.of(context).pop();
+              Future.delayed(const Duration(milliseconds: 250), () {
+                Navigator.pushReplacement(
+                  context,
+                  NoAnimationRoute(
+                      myPageBuilder: (context) => const ViewHome()),
+                );
+              });
             },
           ),
           ListTile(
@@ -74,10 +82,14 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ViewStorage()),
-              );
+              Navigator.of(context).pop();
+              Future.delayed(const Duration(milliseconds: 250), () {
+                Navigator.pushReplacement(
+                  context,
+                  NoAnimationRoute(
+                      myPageBuilder: (context) => const ViewHome()),
+                );
+              });
             },
           ),
           ListTile(
@@ -88,13 +100,16 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ViewStorage()),
-              );
+              Navigator.of(context).pop();
+              Future.delayed(const Duration(milliseconds: 250), () {
+                Navigator.pushReplacement(
+                  context,
+                  NoAnimationRoute(
+                      myPageBuilder: (context) => const ViewHome()),
+                );
+              });
             },
           ),
-          // Agrega más ListTile aquí para más elementos en el Drawer
         ],
       ),
     );

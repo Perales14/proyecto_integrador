@@ -12,7 +12,7 @@ class ViewHomeState extends State<view_home> {
     return Scaffold(
       appBar: AppBar(
         actions: const <Widget>[],
-        title: const Text('Inicio'),
+        title: const Text('Ini cio'),
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: const Icon(Icons.menu_open),

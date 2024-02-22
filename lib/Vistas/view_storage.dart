@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/Services/drawer.dart';
+import 'package:proyecto_integrador/Vistas/view_new_producct.dart';
 
 class ViewStorage extends StatefulWidget {
   const ViewStorage({Key? id}) : super(key: id);
@@ -60,16 +61,17 @@ class ViewStorageState extends State<ViewStorage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        shadowColor: Colors.transparent,
-        color: Colors.transparent,
-        // shape: const CircularNotchedRectangle(),
-        child: IconButton(
-          onPressed: () {
-            // Navigator.pushNamed(context, '/add');
-          },
-          icon: const Icon(Icons.add),
-        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('Si toco el boton agregar');
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ViewNewProduct()),
+          );
+        },
+        backgroundColor: Colors.blue,
+        child: const Icon(Icons.add),
       ),
     );
   }

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class view_loggin extends StatefulWidget {
-  const view_loggin({Key? key}) : super(key: key);
+class ViewLoggin extends StatefulWidget {
+  const ViewLoggin({Key? key}) : super(key: key);
 
   @override
   ViewLoginState createState() => ViewLoginState();
 }
 
-class ViewLoginState extends State<view_loggin> {
+class ViewLoginState extends State<ViewLoggin> {
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
   @override
-  Widget build(BuildContext context)  {
+  Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Inicio de Sesion'),

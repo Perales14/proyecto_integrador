@@ -19,11 +19,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ViewHome(),
-      // routes: {
-      //   '/home': (context) => const ViewHome(),
-      //   '/storage': (context) => const ViewStorage(),
-      //
+      home: const ViewHome(
+          username:
+              'Luis'), //es necesario esto, debido a que en este momento el loggin todavia no lo he hecho,por lo que una vez lo termine, ya podre quitarlo y no tener q poner algun usuario y asi
     );
   }
 }

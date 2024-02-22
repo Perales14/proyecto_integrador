@@ -14,7 +14,6 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          
           DrawerHeader(
             decoration: const BoxDecoration(
               color: Colors.blue,
@@ -29,12 +28,16 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
             onTap: () {
+              //sacar de la box de hive llamada 'usuarios'
+              //var box = Hive.box('users');
+              // String user = await Hive.//toma el valor del usuario
               Navigator.of(context).pop();
               Future.delayed(const Duration(milliseconds: 250), () {
                 Navigator.pushReplacement(
                   context,
                   NoAnimationRoute(
-                      myPageBuilder: (context) => const ViewHome()),
+                      myPageBuilder: (context) =>
+                          const ViewHome(username: 'Luis')),
                 );
               });
             },
@@ -70,7 +73,8 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   NoAnimationRoute(
-                      myPageBuilder: (context) => const ViewHome()),
+                      myPageBuilder: (context) =>
+                          const ViewHome(username: 'Luis')),
                 );
               });
             },
@@ -88,7 +92,8 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   NoAnimationRoute(
-                      myPageBuilder: (context) => const ViewHome()),
+                      myPageBuilder: (context) =>
+                          const ViewHome(username: 'Luis')),
                 );
               });
             },
@@ -106,7 +111,8 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   NoAnimationRoute(
-                      myPageBuilder: (context) => const ViewHome()),
+                      myPageBuilder: (context) =>
+                          const ViewHome(username: 'Luis')),
                 );
               });
             },

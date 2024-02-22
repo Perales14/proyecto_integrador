@@ -16,12 +16,45 @@ class ViewStorageState extends State<ViewStorage> {
         // actions: const <Widget>[],
         title: const Text('Almacen'),
       ),
-      body: const Center(
-        child: Text(
-          'Almacen',
-          style: TextStyle(fontSize: 24),
-        ),
+      body: const SingleChildScrollView(
+        child: Column(children: [
+            ListTile(
+              title: Text('Producto 1'),
+              subtitle: Text('Descripcion'),
+              leading: Text('10'),
+              // onTap: () {
+              // },
+            ),
+            ListTile(
+              title: Text('Producto 2'),
+              subtitle: Text('Descripcion'),
+              leading: Text('20'),
+              // onTap: () {
+              // },
+            ),
+            ListTile(
+              title: Text('Producto 3'),
+              subtitle: Text('Descripcion'),
+              leading: Text('30'),
+              // onTap: () {
+              // },
+            ),
+            ListTile(
+              title: Text('Producto 4'),
+              subtitle: Text('Descripcion'),
+              leading: Text('40'),
+              // onTap: () {
+              // },
+            ),
+        ],),
       ),
-    );
+    bottomNavigationBar: BottomAppBar(
+      child: IconButton(
+            onPressed: () {
+              // Navigator.pushNamed(context, '/add');
+            },
+            icon: const Icon(Icons.add),
+          ),
+    ),);
   }
 }

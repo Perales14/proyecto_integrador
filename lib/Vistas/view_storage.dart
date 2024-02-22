@@ -16,45 +16,61 @@ class ViewStorageState extends State<ViewStorage> {
         // actions: const <Widget>[],
         title: const Text('Almacen'),
       ),
-      body: const SingleChildScrollView(
-        child: Column(children: [
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
             ListTile(
-              title: Text('Producto 1'),
-              subtitle: Text('Descripcion'),
-              leading: Text('10'),
-              // onTap: () {
-              // },
+              title: const Text('Productooso 1'),
+              subtitle: const Text('Descripcion'),
+              leading: const Text('10'),
+              onTap: () {
+                // Navigator.
+                const Dialog(
+                  child: Column(
+                    children: [
+                      Text('Producto 1'),
+                      Text('Descripcion'),
+                      Text('10'),
+                    ],
+                  ),
+                );
+              },
             ),
-            ListTile(
+            const ListTile(
               title: Text('Producto 2'),
               subtitle: Text('Descripcion'),
               leading: Text('20'),
               // onTap: () {
               // },
             ),
-            ListTile(
+            const ListTile(
               title: Text('Producto 3'),
               subtitle: Text('Descripcion'),
               leading: Text('30'),
               // onTap: () {
               // },
             ),
-            ListTile(
+            const ListTile(
               title: Text('Producto 4'),
               subtitle: Text('Descripcion'),
               leading: Text('40'),
               // onTap: () {
               // },
             ),
-        ],),
+          ],
+        ),
       ),
-    bottomNavigationBar: BottomAppBar(
-      child: IconButton(
-            onPressed: () {
-              // Navigator.pushNamed(context, '/add');
-            },
-            icon: const Icon(Icons.add),
-          ),
-    ),);
+      bottomNavigationBar: BottomAppBar(
+        shadowColor: Colors.transparent,
+        color: Colors.transparent,
+        // shape: const CircularNotchedRectangle(),
+        child: IconButton(
+          onPressed: () {
+            // Navigator.pushNamed(context, '/add');
+          },
+          icon: const Icon(Icons.add),
+        ),
+      ),
+    );
   }
 }

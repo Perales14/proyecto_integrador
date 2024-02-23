@@ -8,15 +8,14 @@ class ViewNewProduct extends StatefulWidget {
 }
 
 class ViewNewProductState extends State<ViewNewProduct> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-  TextEditingController quantityController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
-  TextEditingController categoryController = TextEditingController();
-  TextEditingController codeController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    TextEditingController nameController = TextEditingController();
+    TextEditingController descriptionController = TextEditingController();
+    TextEditingController quantityController = TextEditingController();
+    TextEditingController priceController = TextEditingController();
+    TextEditingController categoryController = TextEditingController();
+    TextEditingController codeController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -29,14 +28,19 @@ class ViewNewProductState extends State<ViewNewProduct> {
                   Icons.cancel_outlined,
                   color: Colors.red,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  //  Lo cierra
+                  Navigator.pop(context);
+                },
               )),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('Si toco el boton save');
+          // print('Si toco el boton save');
+          print('nombre: ');
+          print(nameController.text);
           //llama al controlador para que guarde el producto, esto usando los controladores de los textfields
         },
         backgroundColor: Colors.blue,

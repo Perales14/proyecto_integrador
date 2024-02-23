@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/Services/animation_route.dart';
+
 import 'package:proyecto_integrador/Vistas/view_home.dart';
 import 'package:proyecto_integrador/Vistas/view_storage.dart';
 
@@ -64,7 +65,7 @@ class MyDrawer extends StatelessWidget {
             title: const Row(
               children: [
                 Icon(Icons.person),
-                Text(' Clientes'),
+                Text('Clientes'),
               ],
             ),
             onTap: () {
@@ -73,8 +74,9 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   NoAnimationRoute(
-                      myPageBuilder: (context) =>
-                          const ViewHome(username: 'Luis')),
+                    myPageBuilder: (context) =>
+                        const VewClent(username: 'Luis'),
+                  ),
                 );
               });
             },

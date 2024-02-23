@@ -62,16 +62,19 @@ class ViewStorageState extends State<ViewStorage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print('Si toco el boton agregar');
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ViewNewProduct()),
-          );
-        },
-        backgroundColor: Colors.blue,
-        child: const Icon(Icons.add),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: FloatingActionButton(
+          onPressed: () {
+            print('Si toco el boton agregar');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ViewNewProduct()),
+            );
+          },
+          backgroundColor: Colors.blue,
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

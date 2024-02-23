@@ -17,10 +17,11 @@ class ViewHomeState extends State<ViewHome> {
         title: const Text('Inicio'),
         // automaticallyImplyLeading: false,
       ),
-      body: const Column(
+      body: Column(
         children: [
           // Icon(Icons.abc),
-          Text('Bienvenido')
+          const Text('Bienvenido '),
+          Text(widget.username),
         ],
       ),
       drawer: const MyDrawer(headerText: 'Inicio'),

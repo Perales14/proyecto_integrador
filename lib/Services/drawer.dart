@@ -75,7 +75,7 @@ class MyDrawer extends StatelessWidget {
                   context,
                   NoAnimationRoute(
                     myPageBuilder: (context) =>
-                        const VewClent(username: 'Luis'),
+                        const ViewHome(username: 'Luis'),
                   ),
                 );
               });

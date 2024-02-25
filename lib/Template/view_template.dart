@@ -17,7 +17,7 @@ class ViewTemplate extends StatefulWidget {
     required this.onpressedcancel,
     required this.onpressedsave,
     required this.nombres,
-    this.datos = const [],
+    required this.datos,
   });
 
   @override
@@ -31,11 +31,11 @@ class ViewTemplateState extends State<ViewTemplate> {
   @override
   void initState() {
     super.initState();
-    int length = widget.nombres.length;
-    List<TextEditingController> controllers = List.generate(
-      length,
-      (index) => TextEditingController(),
-    );
+    //si tamaño de datos.lenght
+    //esto debido a que SIEMPRE debe de haber controladores.
+    // ya que como esto es una plantilla no podria utiliza un cotrolador en especifico, por lo que debe de recibirlo
+    // para que el que se haya mandado, pueda ser usado en el  "controlador" para guadarlo.
+
     for (int i = 0; i < widget.nombres.length; i++) {
       lista.add(
         Text(widget.nombres[i]),
@@ -98,7 +98,7 @@ class ViewTemplateState extends State<ViewTemplate> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   onPressed: widget.onpressedsave,

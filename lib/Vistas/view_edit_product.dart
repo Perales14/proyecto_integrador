@@ -47,36 +47,34 @@ class EditProductState extends State<EditProduct> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: SizedBox(
-        child: ViewTemplate(
-          leadingappbar: false,
-          tittle: 'Editar Producto',
-          icon: const Icon(Icons.cancel),
-          onpressedsave: () {
-            //guarda los cambios en el producto con Id "codigo"
-            print(namecontroller.text);
-          },
-          onpressedcancel: () {
-            //elimina el producto con Id "codigo"
-            Navigator.pop(context);
-          },
-          nombres: const [
-            'Nombre',
-            'Descripción',
-            'Categoría',
-            'Cantidad',
-            'Precio',
-            'Código'
-          ],
-          datos: [
-            namecontroller,
-            descriptioncontroller,
-            categorycontroller,
-            quantitycontroller,
-            pricecontroller,
-            codecontroller,
-          ],
-        ),
+      child: ViewTemplate(
+        leadingappbar: false,
+        tittle: 'Editar Producto',
+        icon: const Icon(Icons.cancel),
+        onpressedsave: () {
+          //guarda los cambios en el producto con Id "codigo"
+          print(namecontroller.text);
+        },
+        onpressedcancel: () {
+          //elimina el producto con Id "codigo"
+          Navigator.pop(context);
+        },
+        nombres: const [
+          'Nombre',
+          'Descripción',
+          'Categoría',
+          'Cantidad',
+          'Precio',
+          'Código'
+        ],
+        datos: [
+          namecontroller,
+          descriptioncontroller,
+          categorycontroller,
+          quantitycontroller,
+          pricecontroller,
+          codecontroller,
+        ],
       ),
     );
   }

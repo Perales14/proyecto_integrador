@@ -5,6 +5,7 @@ import 'package:proyecto_integrador/Entities/product.dart';
 import 'package:proyecto_integrador/Services/drawer.dart';
 import 'package:proyecto_integrador/Vistas/view_edit_product.dart';
 import 'package:proyecto_integrador/Vistas/view_new_producct.dart';
+import 'package:proyecto_integrador/Vistas/view_product.dart';
 
 class ViewStorage extends StatefulWidget {
   const ViewStorage({Key? id}) : super(key: id);
@@ -24,18 +25,20 @@ class ViewStorageState extends State<ViewStorage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ListTile(
-              title: const Text('Producto 1'),
-              subtitle: const Text('Descripcion'),
-              // leading: const Text('10'),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () {
-                  //elimina el producto con Id "codigo"
-                  print('Eliminar');
-                },
+            ViewProduct(
+              product: Product(
+                name: 'Producto 1',
+                description: 'Descripcion',
+                price: '51',
+                category: 'Categoria',
+                quantity: '30',
+                code: '1213',
               ),
-              onTap: () {
+              onpresseddelete: () {
+                //elimina el producto con Id "codigo"
+                print('Eliminar');
+              },
+              onpressededit: () {
                 // Navigator.
                 showDialog(
                   context: context,
@@ -62,6 +65,44 @@ class ViewStorageState extends State<ViewStorage> {
                 );
               },
             ),
+            // ListTile(
+            //   title: const Text('Producto 1'),
+            //   subtitle: const Text('Descripcion'),
+            //   // leading: const Text('10'),
+            //   trailing: IconButton(
+            //     icon: const Icon(Icons.delete),
+            //     onPressed: () {
+            //       //elimina el producto con Id "codigo"
+            //       print('Eliminar');
+            //     },
+            //   ),
+            //   onTap: () {
+            //     // Navigator.
+            //     showDialog(
+            //       context: context,
+            //       builder: (context) => Dialog(
+            //         shape: const RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.only(
+            //             topLeft: Radius.circular(20),
+            //             topRight: Radius.circular(20),
+            //             bottomLeft: Radius.circular(20),
+            //             bottomRight: Radius.circular(20),
+            //           ),
+            //         ),
+            //         child: EditProduct(
+            //           product: Product(
+            //             name: 'Producto 1',
+            //             description: 'Descripcion',
+            //             price: '51',
+            //             category: 'Categoria',
+            //             quantity: '30',
+            //             code: '1213',
+            //           ),
+            //         ),
+            //       ),
+            //     );
+            //   },
+            // ),
             const ListTile(
               title: Text('Producto 2'),
               subtitle: Text('Descripcion'),

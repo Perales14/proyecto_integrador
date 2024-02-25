@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/Vistas/view_home.dart';
-import 'package:proyecto_integrador/Vistas/view_storage.dart';
 
 void main() {
   runApp(const MyApp());

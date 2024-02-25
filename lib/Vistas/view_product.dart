@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/Entities/product.dart';
 
-class ViewProduct extends StatefulWidget {
+class ViewProduct extends StatelessWidget {
   final Product product;
   final Function() onpresseddelete;
   final Function() onpressededit;
+
   const ViewProduct({
     Key? key,
     required this.product,
@@ -13,20 +14,15 @@ class ViewProduct extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  ViewProductState createState() => ViewProductState();
-}
-
-class ViewProductState extends State<ViewProduct> {
-  @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(widget.product.name),
-      subtitle: Text(widget.product.description),
+      title: Text(product.name),
+      subtitle: Text(product.description),
       trailing: IconButton(
         icon: const Icon(Icons.delete),
-        onPressed: widget.onpresseddelete,
+        onPressed: onpresseddelete,
       ),
-      onTap: widget.onpressededit,
+      onTap: onpressededit,
     );
   }
 }

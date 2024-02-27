@@ -7,11 +7,11 @@ class Product {
   String code;
 
   Product({
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.category,
-    required this.quantity,
-    required this.code,
+    this.name = '',
+    this.description = '',
+    this.price = '',
+    this.category = '',
+    this.quantity = '',
+    this.code = '',
   });
 }

@@ -49,39 +49,6 @@ class ViewStorageState extends State<ViewStorage> {
               },
               products: ProductController().ListProduct(),
             ),
-            // ListProductWidget(
-            //   products: ProductController().ListProduct(),
-            // ),
-            // ViewProduct(
-            //   product: Product(
-            //     name: 'Producto 1',
-            //     description: 'Descripcion',
-            //     price: '51',
-            //     category: 'Categoria',
-            //     quantity: '30',
-            //     code: '1213',
-            //   ),
-            //   onpresseddelete: () {
-            //     print('Eliminar');
-            //   },
-            //   onpressededit: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => EditProduct(
-            //           product: Product(
-            //             name: 'Producto 1',
-            //             description: 'Descripcion',
-            //             price: '51',
-            //             category: 'Categoria',
-            //             quantity: '30',
-            //             code: '1213',
-            //           ),
-            //         ),
-            //       ),
-            //     );
-            //   },
-            // ),
           ],
         ),
       ),

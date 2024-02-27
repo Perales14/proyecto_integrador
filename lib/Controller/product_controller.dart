@@ -39,14 +39,19 @@ class ProductController {
   Product GetProduct(String code) {
     var products = Hive.box('products');
     var producto = products.get(code);
-    return Product(
-      code: producto['codigo'],
-      name: producto['nombre'],
-      price: producto['precio'],
-      quantity: producto['cantidad'],
-      description: producto['descripcion'],
-      category: producto['categoria'],
-    );
+    if (producto != null) {
+      return Product(
+        code: producto['codigo'],
+        name: producto['nombre'],
+        price: producto['precio'],
+        quantity: producto['cantidad'],
+        description: producto['descripcion'],
+        category: producto['categoria'],
+      );
+    } else {
+      // Manejar la situación en la que el elemento no existe
+      return Product(); // Por ejemplo, puedes devolver un objeto Product vacío o null
+    }
   }
 
   void DeleteProduct(String code) async {

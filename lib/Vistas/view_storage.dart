@@ -11,6 +11,10 @@ class ViewStorage extends StatefulWidget {
 }
 
 class ViewStorageState extends State<ViewStorage> {
+  // ListTile vis = const ListTile(
+  //   title: Text('data'),
+  // );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,10 +28,15 @@ class ViewStorageState extends State<ViewStorage> {
       //   children: [
       //     ElevatedButton(
       //       onPressed: () {
-      //         print('Boton 1');
-      //         print(ProductController().GetProduct('1'));
+      //         setState(() {
+      //           // vis = const ListTile(
+      //           //   title: Text('dato'),
+      //           // );
+      //         });
+      //         print('Boton1');
+      //         // print(ProductController().GetProduct('1'));
       //       },
-      //       child: const Text('Boton 1'),
+      //       child: const Text('Boton1'),
       //     ),
       //   ],
       // ),
@@ -35,6 +44,9 @@ class ViewStorageState extends State<ViewStorage> {
         child: Column(
           children: [
             ListProductWidget(
+              setstate: () {
+                setState(() {});
+              },
               products: ProductController().ListProduct(),
             ),
             // ListProductWidget(
@@ -82,6 +94,12 @@ class ViewStorageState extends State<ViewStorage> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ViewNewProduct()),
+            ).then(
+              (value) => {
+                setState(
+                  () {},
+                ),
+              },
             );
           },
           backgroundColor: Colors.blue,

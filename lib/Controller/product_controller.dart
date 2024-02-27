@@ -49,9 +49,9 @@ class ProductController {
     );
   }
 
-  void DeleteProduct(String code) {
+  void DeleteProduct(String code) async {
     var products = Hive.box('products');
-    products.delete(code);
+    await products.delete(code);
   }
 
   List<Product> ListProduct() {

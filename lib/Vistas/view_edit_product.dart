@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/Controller/product_controller.dart';
+import 'package:proyecto_integrador/Controller/product_valid.dart';
 import 'package:proyecto_integrador/Entities/product.dart';
 import 'package:proyecto_integrador/Template/view_template.dart';
 
@@ -56,6 +58,16 @@ class EditProductState extends State<EditProduct> {
           onPressed: () {
             //guarda los cambios en el producto con Id "codigo"
             // print(namecontroller.text);
+            // ProductController().AddProduct
+            ProductValid().validProduct(
+              namecontroller,
+              descriptioncontroller,
+              quantitycontroller,
+              pricecontroller,
+              categorycontroller,
+              codecontroller,
+            );
+            Navigator.pop(context);
           },
           // color: Colors.blue,
           child: const Icon(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ViewTemplate extends StatefulWidget {
   final String tittle;
@@ -18,7 +17,10 @@ class ViewTemplate extends StatefulWidget {
     required this.nombres,
     required this.datos,
     //usar un widget que no modifique la vista (de constante)
-    this.cat = const SizedBox(),
+    this.cat = const SizedBox(
+      height: 0.0,
+      width: 0.0,
+    ),
   });
 
   @override
@@ -38,6 +40,8 @@ class ViewTemplateState extends State<ViewTemplate> {
         Padding(
           padding: const EdgeInsets.all(12.0),
           child: TextField(
+            //al presionar enter se pase al sig campo
+            textInputAction: TextInputAction.next,
             controller: widget.datos[i],
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -51,7 +55,7 @@ class ViewTemplateState extends State<ViewTemplate> {
     }
 
     //agregar en la posicion 5 el widget cat
-    lista.insert(5, widget.cat);
+    // lista.insert(5, widget.cat);
   }
 
   @override

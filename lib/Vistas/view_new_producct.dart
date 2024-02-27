@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/Controller/product_valid.dart';
 import 'package:proyecto_integrador/Template/view_template.dart';
 
 class ViewNewProduct extends StatefulWidget {
@@ -26,6 +27,15 @@ class ViewNewProductState extends State<ViewNewProduct> {
           backgroundColor: Colors.blue,
           onPressed: () {
             //guarda los cambios en el producto con Id "codigo"
+            ProductValid().validProduct(
+              nameController,
+              descriptionController,
+              quantityController,
+              priceController,
+              categoryController,
+              codeController,
+            );
+            Navigator.pop(context);
           },
           // color: Colors.blue,
           child: const Icon(
@@ -42,9 +52,6 @@ class ViewNewProductState extends State<ViewNewProduct> {
             Navigator.pop(context);
             print('Cancelar');
           },
-          // onpressedsave: () {
-          //   print(nameController.text);
-          // },
           nombres: const [
             'Nombre',
             'Descripcion',

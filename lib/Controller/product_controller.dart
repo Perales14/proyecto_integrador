@@ -1,19 +1,52 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:proyecto_integrador/Entities/product.dart';
 
 class ProductController {
 //future builder
-  void AddProduct(Product proudct) {
-    var products = Hive.box('products');
 
-    products.put(proudct.code, {
-      'nombre': proudct.name,
-      'precio': proudct.price,
-      'cantidad': proudct.quantity,
-      'descripcion': proudct.description,
-      'categoria': proudct.category,
-      'codigo': proudct.code
+  void AddProduct(
+      TextEditingController nameController,
+      TextEditingController descriptionController,
+      TextEditingController quantityController,
+      TextEditingController priceController,
+      TextEditingController categoryController,
+      TextEditingController codeController) {
+    AddProductObject(
+      Product(
+        code: codeController.text,
+        name: nameController.text,
+        price: priceController.text,
+        quantity: quantityController.text,
+        description: descriptionController.text,
+        category: categoryController.text,
+      ),
+    );
+  }
+
+  void AddProductObject(Product product) async {
+    var products = await Hive.openBox('products'); // Abre la caja 'products'
+    products.put(product.code, {
+      'nombre': product.name,
+      'precio': product.price,
+      'cantidad': product.quantity,
+      'descripcion': product.description,
+      'categoria': product.category,
+      'codigo': product.code
     });
+  }
+
+  Product GetProduct(String code) {
+    var products = Hive.box('products');
+    var producto = products.get(code);
+    return Product(
+      code: producto['codigo'],
+      name: producto['nombre'],
+      price: producto['precio'],
+      quantity: producto['cantidad'],
+      description: producto['descripcion'],
+      category: producto['categoria'],
+    );
   }
 
   void DeleteProduct(String code) {
@@ -22,21 +55,24 @@ class ProductController {
   }
 
   List<Product> ListProduct() {
-    List<Product> listproducts = [];
     var products = Hive.box('products');
 
-    for (var producto in products.values) {
-      listproducts.add(
-        Product(
-          code: producto['codigo'],
-          name: producto['nombre'],
-          price: producto['precio'],
-          quantity: producto['cantidad'],
-          description: producto['descripcion'],
-          category: producto['categoria'],
-        ),
-      );
+    if (products.isNotEmpty) {
+      List<Product> listaProductos = [];
+      for (var i = 0; i < products.length; i++) {
+        listaProductos.add(
+          Product(
+            code: products.getAt(i)['codigo'],
+            name: products.getAt(i)['nombre'],
+            price: products.getAt(i)['precio'],
+            quantity: products.getAt(i)['cantidad'],
+            description: products.getAt(i)['descripcion'],
+            category: products.getAt(i)['categoria'],
+          ),
+        );
+      }
+      return listaProductos;
     }
-    return listproducts;
+    return [];
   }
 }

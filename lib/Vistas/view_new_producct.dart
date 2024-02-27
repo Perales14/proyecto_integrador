@@ -18,18 +18,33 @@ class ViewNewProductState extends State<ViewNewProduct> {
     TextEditingController categoryController = TextEditingController();
     TextEditingController codeController = TextEditingController();
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(15),
+        child: FloatingActionButton(
+          // color: Colors.blue,
+          backgroundColor: Colors.blue,
+          onPressed: () {
+            //guarda los cambios en el producto con Id "codigo"
+          },
+          // color: Colors.blue,
+          child: const Icon(
+            Icons.save,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: ViewTemplate(
-          leadingappbar: true,
+          leadingappbar: false,
           tittle: 'Nuevo Producto',
           icon: const Icon(Icons.cancel_outlined),
           onpressedcancel: () {
             Navigator.pop(context);
             print('Cancelar');
           },
-          onpressedsave: () {
-            print(nameController.text);
-          },
+          // onpressedsave: () {
+          //   print(nameController.text);
+          // },
           nombres: const [
             'Nombre',
             'Descripcion',

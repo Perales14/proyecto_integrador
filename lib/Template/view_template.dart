@@ -5,19 +5,20 @@ class ViewTemplate extends StatefulWidget {
   final String tittle;
   final Icon icon;
   final Function() onpressedcancel;
-  final Function() onpressedsave;
   final List<String> nombres;
   final List<TextEditingController> datos;
   final bool leadingappbar;
+  final Widget cat;
   const ViewTemplate({
     super.key,
     required this.leadingappbar,
     required this.tittle,
     required this.icon,
     required this.onpressedcancel,
-    required this.onpressedsave,
     required this.nombres,
     required this.datos,
+    //usar un widget que no modifique la vista (de constante)
+    this.cat = const SizedBox(),
   });
 
   @override
@@ -25,17 +26,10 @@ class ViewTemplate extends StatefulWidget {
 }
 
 class ViewTemplateState extends State<ViewTemplate> {
-  // int tamaño = widget.nombres.isEmpty?0:widget.nombres.length;
-
   List<Widget> lista = [];
   @override
   void initState() {
     super.initState();
-    //si tamaño de datos.lenght
-    //esto debido a que SIEMPRE debe de haber controladores.
-    // ya que como esto es una plantilla no podria utiliza un cotrolador en especifico, por lo que debe de recibirlo
-    // para que el que se haya mandado, pueda ser usado en el  "controlador" para guadarlo.
-
     for (int i = 0; i < widget.nombres.length; i++) {
       lista.add(
         Text(widget.nombres[i]),
@@ -55,63 +49,37 @@ class ViewTemplateState extends State<ViewTemplate> {
         ),
       );
     }
+
+    //agregar en la posicion 5 el widget cat
+    lista.insert(5, widget.cat);
   }
 
-  // String titulo = widget.tittle;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Column(
-            // children: lista,
-            ),
-        SingleChildScrollView(
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  AppBar(
-                    automaticallyImplyLeading: widget.leadingappbar,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                    ),
-                    title: Text(widget.tittle),
-                    actions: [
-                      IconButton(
-                        icon: widget.icon,
-                        onPressed: widget.onpressedcancel,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: lista,
-                  ),
-                ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          AppBar(
+            automaticallyImplyLeading: widget.leadingappbar,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
               ),
-              Positioned(
-                bottom: 10,
-                right: 10,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueAccent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  onPressed: widget.onpressedsave,
-                  child: const Icon(
-                    Icons.save,
-                    color: Colors.black,
-                  ),
-                ),
+            ),
+            title: Text(widget.tittle),
+            actions: [
+              IconButton(
+                icon: widget.icon,
+                onPressed: widget.onpressedcancel,
               ),
             ],
           ),
-        ),
-      ],
+          Column(
+            children: lista,
+          ),
+        ],
+      ),
     );
   }
 }

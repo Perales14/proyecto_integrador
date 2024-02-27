@@ -40,18 +40,18 @@ class ViewStorageState extends State<ViewStorage> {
               },
               onpressededit: () {
                 // Navigator.
-                showDialog(
-                  context: context,
-                  builder: (context) => Dialog(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
-                      ),
-                    ),
-                    child: EditProduct(
+                //       onPressed: () {
+                print('Si toco el boton agregar');
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(builder: (context) => const ViewNewProduct()),
+                //   );
+                // },
+                //
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditProduct(
                       product: Product(
                         name: 'Producto 1',
                         description: 'Descripcion',
@@ -65,44 +65,6 @@ class ViewStorageState extends State<ViewStorage> {
                 );
               },
             ),
-            // ListTile(
-            //   title: const Text('Producto 1'),
-            //   subtitle: const Text('Descripcion'),
-            //   // leading: const Text('10'),
-            //   trailing: IconButton(
-            //     icon: const Icon(Icons.delete),
-            //     onPressed: () {
-            //       //elimina el producto con Id "codigo"
-            //       print('Eliminar');
-            //     },
-            //   ),
-            //   onTap: () {
-            //     // Navigator.
-            //     showDialog(
-            //       context: context,
-            //       builder: (context) => Dialog(
-            //         shape: const RoundedRectangleBorder(
-            //           borderRadius: BorderRadius.only(
-            //             topLeft: Radius.circular(20),
-            //             topRight: Radius.circular(20),
-            //             bottomLeft: Radius.circular(20),
-            //             bottomRight: Radius.circular(20),
-            //           ),
-            //         ),
-            //         child: EditProduct(
-            //           product: Product(
-            //             name: 'Producto 1',
-            //             description: 'Descripcion',
-            //             price: '51',
-            //             category: 'Categoria',
-            //             quantity: '30',
-            //             code: '1213',
-            //           ),
-            //         ),
-            //       ),
-            //     );
-            //   },
-            // ),
             const ListTile(
               title: Text('Producto 2'),
               subtitle: Text('Descripcion'),

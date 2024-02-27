@@ -46,35 +46,87 @@ class EditProductState extends State<EditProduct> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: ViewTemplate(
-        leadingappbar: false,
-        tittle: 'Editar Producto',
-        icon: const Icon(Icons.cancel),
-        onpressedsave: () {
-          //guarda los cambios en el producto con Id "codigo"
-          print(namecontroller.text);
-        },
-        onpressedcancel: () {
-          //elimina el producto con Id "codigo"
-          Navigator.pop(context);
-        },
-        nombres: const [
-          'Nombre',
-          'Descripción',
-          'Categoría',
-          'Cantidad',
-          'Precio',
-          'Código'
-        ],
-        datos: [
-          namecontroller,
-          descriptioncontroller,
-          categorycontroller,
-          quantitycontroller,
-          pricecontroller,
-          codecontroller,
-        ],
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(15),
+        child: FloatingActionButton(
+          // color: Colors.blue,
+          backgroundColor: Colors.blue,
+          onPressed: () {
+            //guarda los cambios en el producto con Id "codigo"
+            // print(namecontroller.text);
+          },
+          // color: Colors.blue,
+          child: const Icon(
+            Icons.save,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: ViewTemplate(
+          // cat: Combobox(),
+          // cat: const SizedBox(),
+          //poner en cat un comboobox
+          cat: DropdownButton<String>(
+            // value: categorycontroller.text,
+            // value: categorycontroller.text,
+            onChanged: (String? newValue) {
+              setState(() {
+                categorycontroller.text = newValue!;
+              });
+            },
+            items: <String>[
+              'Categoria 1',
+              'Categoria 2',
+              'Categoria 3',
+              'Categoria 4'
+            ].map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            // items: <String>[
+            //   'Categoria 1',
+            //   'Categoria 2',
+            //   'Categoria 3',
+            //   'Categoria 4'
+            // ].map<DropdownMenuItem<String>>((String value) {
+            //   return DropdownMenuItem<String>(
+            //     value: value,
+            //     child: Text(value),
+            //   );
+            // }).toList(),
+          ),
+          leadingappbar: false,
+          tittle: 'Editar Producto',
+          icon: const Icon(Icons.cancel),
+          // onpressedsave: () {
+          //   //guarda los cambios en el producto con Id "codigo"
+          //   print(namecontroller.text);
+          // },
+          onpressedcancel: () {
+            //elimina el producto con Id "codigo"
+            Navigator.pop(context);
+          },
+          nombres: const [
+            'Nombre',
+            'Descripción',
+            'Categoría',
+            'Cantidad',
+            'Precio',
+            'Código'
+          ],
+          datos: [
+            namecontroller,
+            descriptioncontroller,
+            categorycontroller,
+            quantitycontroller,
+            pricecontroller,
+            codecontroller,
+          ],
+        ),
       ),
     );
   }

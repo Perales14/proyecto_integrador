@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_integrador/Controller/product_controller.dart';
+import 'package:proyecto_integrador/Controller/Entities/product_controller.dart';
 
 class ProductValid {
   bool validProduct(

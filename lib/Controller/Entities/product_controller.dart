@@ -6,13 +6,14 @@ class ProductController {
 //future builder
 
   void AddProduct(
-      TextEditingController nameController,
-      TextEditingController descriptionController,
-      TextEditingController quantityController,
-      TextEditingController priceController,
-      TextEditingController categoryController,
-      TextEditingController codeController) {
-    AddProductObject(
+    TextEditingController nameController,
+    TextEditingController descriptionController,
+    TextEditingController quantityController,
+    TextEditingController priceController,
+    TextEditingController categoryController,
+    TextEditingController codeController,
+  ) {
+    _AddProductObject(
       Product(
         code: codeController.text,
         name: nameController.text,
@@ -24,9 +25,9 @@ class ProductController {
     );
   }
 
-  void AddProductObject(Product product) async {
+  void _AddProductObject(Product product) async {
     var products = await Hive.openBox('products'); // Abre la caja 'products'
-    products.put(product.code, {
+    await products.put(product.code, {
       'nombre': product.name,
       'precio': product.price,
       'cantidad': product.quantity,
@@ -34,6 +35,16 @@ class ProductController {
       'categoria': product.category,
       'codigo': product.code
     });
+  }
+
+  bool searchProduct(String code) {
+    var products = Hive.box('products');
+    var producto = products.get(code);
+    if (producto != null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Product GetProduct(String code) {
@@ -49,8 +60,7 @@ class ProductController {
         category: producto['categoria'],
       );
     } else {
-      // Manejar la situación en la que el elemento no existe
-      return Product(); // Por ejemplo, puedes devolver un objeto Product vacío o null
+      return Product();
     }
   }
 
@@ -77,6 +87,32 @@ class ProductController {
         );
       }
       return listaProductos;
+    }
+    return [];
+  }
+
+  List<Product> ListProductCategories(String Category) {
+    //tomar los productos que tengan de categoria "Category"
+    var products = Hive.box('products');
+    // var products = Hive.box('products');
+
+    if (products.isNotEmpty) {
+      List<Product> listaProductos = [];
+
+      for (var i = 0; i < products.length; i++) {
+        if (products.getAt(i)['categoria'] == Category) {
+          listaProductos.add(
+            Product(
+              code: products.getAt(i)['codigo'],
+              name: products.getAt(i)['nombre'],
+              price: products.getAt(i)['precio'],
+              quantity: products.getAt(i)['cantidad'],
+              description: products.getAt(i)['descripcion'],
+              category: products.getAt(i)['categoria'],
+            ),
+          );
+        }
+      }
     }
     return [];
   }

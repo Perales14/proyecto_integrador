@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/Services/animation_route.dart';
+import 'package:proyecto_integrador/Views/ViewDrawer/view_categorys.dart';
+import 'package:proyecto_integrador/Views/ViewDrawer/view_clients.dart';
+import 'package:proyecto_integrador/Views/ViewDrawer/view_sell.dart';
 
-import 'package:proyecto_integrador/Vistas/view_home.dart';
-import 'package:proyecto_integrador/Vistas/view_storage.dart';
+import 'package:proyecto_integrador/Views/view_home.dart';
+import 'package:proyecto_integrador/Views/ViewDrawer/view_storage.dart';
 
 class MyDrawer extends StatelessWidget {
   final String headerText;
@@ -74,8 +77,7 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   NoAnimationRoute(
-                    myPageBuilder: (context) =>
-                        const ViewHome(username: 'Luis'),
+                    myPageBuilder: (context) => const ViewClients(),
                   ),
                 );
               });
@@ -94,8 +96,8 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   NoAnimationRoute(
-                      myPageBuilder: (context) =>
-                          const ViewHome(username: 'Luis')),
+                    myPageBuilder: (context) => const ViewCategorys(),
+                  ),
                 );
               });
             },
@@ -113,8 +115,8 @@ class MyDrawer extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   NoAnimationRoute(
-                      myPageBuilder: (context) =>
-                          const ViewHome(username: 'Luis')),
+                    myPageBuilder: (context) => const ViewSell(),
+                  ),
                 );
               });
             },

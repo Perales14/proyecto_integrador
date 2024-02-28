@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_integrador/Controller/product_controller.dart';
-import 'package:proyecto_integrador/Controller/product_valid.dart';
+import 'package:proyecto_integrador/Controller/Entities/product_controller.dart';
+import 'package:proyecto_integrador/Controller/Validaciones/product_valid.dart';
 import 'package:proyecto_integrador/Entities/product.dart';
 import 'package:proyecto_integrador/Template/view_template.dart';
 

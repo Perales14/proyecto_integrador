@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_integrador/Controller/product_controller.dart';
+import 'package:proyecto_integrador/Controller/Entities/product_controller.dart';
 import 'package:proyecto_integrador/Entities/product.dart';
-import 'package:proyecto_integrador/Vistas/view_edit_product.dart';
-import 'package:proyecto_integrador/Vistas/view_product.dart';
+import 'package:proyecto_integrador/Views/ViewEdit/view_edit_product.dart';
+import 'package:proyecto_integrador/Views/ViewSingle/view_product.dart';
 
-class ListProductWidget extends StatefulWidget {
+class ListProductWidget extends StatelessWidget {
   final List<Product> products;
   final Function() setstate;
   const ListProductWidget({
@@ -14,13 +14,8 @@ class ListProductWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ListProductWidgetState createState() => _ListProductWidgetState();
-}
-
-class _ListProductWidgetState extends State<ListProductWidget> {
-  @override
   Widget build(BuildContext context) {
-    if (widget.products.isEmpty) {
+    if (products.isEmpty) {
       print('products.is empty');
       return const Center(
         child: Text('No hay productos'),
@@ -33,12 +28,11 @@ class _ListProductWidgetState extends State<ListProductWidget> {
 
   List<Widget> _listProduct(BuildContext context) {
     print('products.is NOT empty');
-    return widget.products.map((Product producto) {
+    return products.map((Product producto) {
       return ViewProduct(
         onpresseddelete: () {
           ProductController().DeleteProduct(producto.code);
-          // setState(() {});
-          widget.setstate();
+          setstate();
         },
         onpressededit: () {
           Navigator.push(
@@ -49,20 +43,7 @@ class _ListProductWidgetState extends State<ListProductWidget> {
               ),
             ),
             // ignore: non_constant_identifier_names
-          ).then((value) => widget.setstate());
-          // widget.setstate();
-          // .then(
-          //   (value) => {
-          //     setState(
-          //       () {},
-          //     ),
-          //   },
-          // );
-          // .then((_) {
-          //   setState(
-          //     () {},
-          //   ); // Actualiza el estado después de editar el producto
-          // });
+          ).then((value) => setstate());
         },
         product: producto,
       );

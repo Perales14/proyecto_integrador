@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 // import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:proyecto_integrador/Vistas/view_storage.dart';
+import 'package:proyecto_integrador/Views/ViewDrawer/view_storage.dart';
 
 void main() async {
   await Hive.initFlutter();
   //open box 'product'
   await Hive.openBox('products');
+  await Hive.openBox('clients');
+  await Hive.openBox('categories');
 
   // await Hive.initFlutter();
   runApp(const MyApp());

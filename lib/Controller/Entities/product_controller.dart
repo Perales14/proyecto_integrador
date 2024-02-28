@@ -116,4 +116,29 @@ class ProductController {
     }
     return [];
   }
+
+  List<Product> ListProductName(String name) {
+    var products = Hive.box('products');
+
+    if (products.isNotEmpty) {
+      List<Product> listaProductos = [];
+
+      for (var i = 0; i < products.length; i++) {
+        if (products.getAt(i)['nombre'] == name) {
+          listaProductos.add(
+            Product(
+              code: products.getAt(i)['codigo'],
+              name: products.getAt(i)['nombre'],
+              price: products.getAt(i)['precio'],
+              quantity: products.getAt(i)['cantidad'],
+              description: products.getAt(i)['descripcion'],
+              category: products.getAt(i)['categoria'],
+            ),
+          );
+        }
+      }
+      return listaProductos;
+    }
+    return [];
+  }
 }

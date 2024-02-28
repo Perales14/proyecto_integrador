@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/Controller/Entities/product_controller.dart';
+import 'package:proyecto_integrador/Controller/Entities/search_controller.dart';
 import 'package:proyecto_integrador/Controller/Validaciones/product_valid.dart';
 import 'package:proyecto_integrador/Entities/product.dart';
 import 'package:proyecto_integrador/Services/drawer.dart';
@@ -16,6 +17,27 @@ class ViewSell extends StatefulWidget {
 class _ViewSellState extends State<ViewSell> {
   List<ViewSellProduct> products = [];
   TextEditingController codeController = TextEditingController();
+  List<Widget> list = [];
+
+  @override
+  void initState() {
+    super.initState();
+    //
+    //Expanded(
+    //   child: SingleChildScrollView(
+    //     child: Column(
+    //         children: ),
+    //   ),
+
+    // ),
+    //
+    list = SearchControll(
+      search: '',
+      products: ProductController().ListProduct(),
+    ).searchProduct();
+    print('list.length');
+    print(list.length);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +48,7 @@ class _ViewSellState extends State<ViewSell> {
       appBar: AppBar(
         title: const Text('Vender'),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,34 +65,54 @@ class _ViewSellState extends State<ViewSell> {
                 top: 6.0,
               ),
               child: TextField(
-                onSubmitted: (value) {
-                  if (ProductController().searchProduct(
-                    codeController.text,
-                  )) {
-                    Product product = ProductController().GetProduct(
-                      codeController.text,
-                    );
-                    setState(
-                      () {
-                        products.add(
-                          ViewSellProduct(
-                            code: product.code,
-                            name: product.name,
-                            unitPrice: double.parse(product.price),
-                            quantity: 5,
-                          ),
-                        );
-                      },
-                    );
-                  } else {
-                    const snackBar = SnackBar(
-                      content: Text('Producto no encontrado'),
-                      behavior: SnackBarBehavior
-                          .floating, // Establecer el comportamiento a flotante
-                    );
+                onChanged: (value) {
+                  setState(
+                    () {
+                      // print(product.name);
+                      list = SearchControll(
+                        search: codeController.text,
+                        products: ProductController().ListProduct(),
+                      ).searchProduct();
+                      print('list.length');
+                      print(list.length);
+                    },
+                  );
+                  // if (ProductController().searchProduct(
+                  //   codeController.text,
+                  // )) {
+                  //   Product product = ProductController().GetProduct(
+                  //     codeController.text,
+                  //   );
+                  //   setState(
+                  //     () {
+                  //       // print(product.name);
+                  //       list = SearchControll(
+                  //         search: codeController.text,
+                  //         products: ProductController().ListProduct(),
+                  //       ).searchProduct();
+                  //       print('list.length');
+                  //       print(list.length);
+                  //       // list.add(value);
 
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
+                  //       // products.add(
+                  //       //   ViewSellProduct(
+                  //       //     code: product.code,
+                  //       //     name: product.name,
+                  //       //     unitPrice: double.parse(product.price),
+                  //       //     quantity: 5,
+                  //       //   ),
+                  //       // );
+                  //     },
+                  //   );
+                  // } else {
+                  //   const snackBar = SnackBar(
+                  //     content: Text('Producto no encontrado'),
+                  //     behavior: SnackBarBehavior
+                  //         .floating, // Establecer el comportamiento a flotante
+                  //   );
+
+                  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  // }
                 },
                 textInputAction: TextInputAction.next,
                 controller: codeController,
@@ -82,21 +124,11 @@ class _ViewSellState extends State<ViewSell> {
                 ),
               ),
             ),
-            products.isEmpty
-                ? const Text('No hay productos')
-                : Expanded(
-                    child: ListView.builder(
-                      itemCount: products.length,
-                      itemBuilder: (context, index) {
-                        return ViewSellProduct(
-                          code: products[index].code,
-                          name: products[index].name,
-                          unitPrice: products[index].unitPrice,
-                          quantity: products[index].quantity,
-                        );
-                      },
-                    ),
-                  ),
+            // list.map((e) => null)
+            // list
+            Column(
+              children: list,
+            )
           ],
         ),
       ),

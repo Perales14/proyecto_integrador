@@ -16,6 +16,8 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  // una vista en la que muestre los productos en los que el "name" contenga el String Recibido
+  //usara ViewProd de producto
   //para que el widget sea constante
   // This widget is the root of your application.
   @override

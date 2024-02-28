@@ -86,7 +86,11 @@ class _EditCategoryState extends State<EditCategory> {
             'Descripcion: ',
             'Codigo: ',
           ],
-          datos: [namecontroller, descriptioncontroller, codecontroller],
+          datos: [
+            namecontroller,
+            descriptioncontroller,
+            codecontroller,
+          ],
         ),
       ),
     );

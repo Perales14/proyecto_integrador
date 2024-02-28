@@ -64,12 +64,12 @@ class _ViewNewClientState extends State<ViewNewClient> {
             'Codigo',
           ],
           datos: [
-            codecontroller,
             namecontroller,
             lastnamecontroller,
             emailcontroller,
             phonecontroller,
             addresscontroller,
+            codecontroller,
           ],
         ),
       ),

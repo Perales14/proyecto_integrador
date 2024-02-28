@@ -42,7 +42,6 @@ class ListProductWidget extends StatelessWidget {
                 product: producto,
               ),
             ),
-            // ignore: non_constant_identifier_names
           ).then((value) => setstate());
         },
         product: producto,

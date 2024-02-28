@@ -59,71 +59,29 @@ class _EditClientState extends State<EditClient> {
           ),
         ),
       ),
-      // appBar: AppBar(
-      //   title: const Text('Editar Cliente'),
-      // ),
       body: SingleChildScrollView(
         child: ViewTemplate(
-          // cat: Combobox(),
-          // cat: const SizedBox(),
-          //poner en cat un comboobox
-          // cat: DropdownButton<String>(
-          //   // value: categorycontroller.text,
-          //   // value: categorycontroller.text,
-          //   onChanged: (String? newValue) {
-          //     setState(() {
-          //       categorycontroller.text = newValue!;
-          //     });
-          //   },
-          //   items: <String>[
-          //     'Categoria 1',
-          //     'Categoria 2',
-          //     'Categoria 3',
-          //     'Categoria 4'
-          //   ].map<DropdownMenuItem<String>>((String value) {
-          //     return DropdownMenuItem<String>(
-          //       value: value,
-          //       child: Text(value),
-          //     );
-          //   }).toList(),
-          //   // items: <String>[
-          //   //   'Categoria 1',
-          //   //   'Categoria 2',
-          //   //   'Categoria 3',
-          //   //   'Categoria 4'
-          //   // ].map<DropdownMenuItem<String>>((String value) {
-          //   //   return DropdownMenuItem<String>(
-          //   //     value: value,
-          //   //     child: Text(value),
-          //   //   );
-          //   // }).toList(),
-          // ),
           leadingappbar: false,
           tittle: 'Editar Producto',
           icon: const Icon(Icons.cancel),
-          // onpressedsave: () {
-          //   //guarda los cambios en el producto con Id "codigo"
-          //   print(namecontroller.text);
-          // },
           onpressedcancel: () {
-            //elimina el producto con Id "codigo"
             Navigator.pop(context);
           },
           nombres: const [
-            'Codigo',
             'Nombre',
             'Apellido',
             'Correo',
             'Telefono',
             'Direccion',
+            'Codigo',
           ],
           datos: [
-            codecontroller,
             namecontroller,
             lastnamecontroller,
             emailcontroller,
             phonecontroller,
             addresscontroller,
+            codecontroller,
           ],
         ),
       ),

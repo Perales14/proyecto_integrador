@@ -69,8 +69,17 @@ class ProductController {
     await products.delete(code);
   }
 
+  // void openBox() async {
+  //   await Hive.openBox('products');
+  // }
+
   List<Product> ListProduct() {
+    // Hive.openBox('products');
+    // openBox();
     var products = Hive.box('products');
+
+    // print('products.length:');
+    // print(products.length);
 
     if (products.isNotEmpty) {
       List<Product> listaProductos = [];

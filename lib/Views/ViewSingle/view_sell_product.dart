@@ -4,17 +4,19 @@ class ViewSellProduct extends StatefulWidget {
   final String name;
   final double unitPrice;
   int quantity;
-  // final Function() onIncreaseQuantity;
-  // final Function() onDecreaseQuantity;
+  final Function() deleteProduct;
+  // final Function() setstate;
+  // final int Quantitylimit;
   final String code;
   ViewSellProduct({
     super.key,
+    // required this.setstate,
     required this.code,
+    required this.deleteProduct,
     required this.name,
     required this.unitPrice,
     required this.quantity,
-    // required this.onIncreaseQuantity,
-    // required this.onDecreaseQuantity,
+    // required this.Quantitylimit,
   });
 
   @override
@@ -25,13 +27,21 @@ class _ViewSellProductState extends State<ViewSellProduct> {
   // final int _quantity = 0;
   void onIncreaseQuantity() {
     setState(() {
+      // widget.quantity++;
+      // if (widget.quantity <= widget.Quantitylimit) {
+      //   widget.quantity++;
+      // }
       widget.quantity++;
     });
   }
 
   void onDecreaseQuantity() {
+    print('decrease');
     setState(() {
-      if (widget.quantity > 0) {
+      if (widget.quantity == 0) {
+        print('delete');
+        widget.deleteProduct;
+      } else if (widget.quantity > 0) {
         widget.quantity--;
       }
     });

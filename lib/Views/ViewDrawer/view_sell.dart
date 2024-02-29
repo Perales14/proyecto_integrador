@@ -17,7 +17,22 @@ class ViewSell extends StatefulWidget {
 
 class _ViewSellState extends State<ViewSell> {
   List<Widget> products = [];
+  ProductController Pr = ProductController();
   TextEditingController codeController = TextEditingController();
+
+  void deleteProduct(String code) {
+    setState(() {
+      products.removeWhere((element) {
+        if (element is ViewSellProduct) {
+          return element.code == code;
+        }
+        return false;
+      });
+    });
+    print('elimina el producto con el codigo: $code');
+    print('');
+    print('productos: $products');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,33 +80,30 @@ class _ViewSellState extends State<ViewSell> {
               ),
               child: TextField(
                 onSubmitted: (value) {
-                  // if (ProductController().searchProduct(
-                  //   codeController.text,
-                  // )) {
-                  //   Product product = ProductController().GetProduct(
-                  //     codeController.text,
-                  //   );
-                  //   setState(
-                  //     () {
-                  //       products.add(
-                  //         ViewSellProduct(
-                  //           code: product.code,
-                  //           name: product.name,
-                  //           unitPrice: double.parse(product.price),
-                  //           quantity: 5,
-                  //         ),
-                  //       );
-                  //     },
-                  //   );
-                  // } else {
-                  //   const snackBar = SnackBar(
-                  //     content: Text('Producto no encontrado'),
-                  //     behavior: SnackBarBehavior
-                  //         .floating, // Establecer el comportamiento a flotante
-                  //   );
+                  if (Pr.searchProduct(codeController.text)) {
+                    Product product = Pr.GetProduct(codeController.text);
+                    setState(() {
+                      products.add(
+                        ViewSellProduct(
+                          deleteProduct: () {
+                            deleteProduct(product.code);
+                          },
+                          code: product.code,
+                          name: product.name,
+                          unitPrice: double.parse(product.price),
+                          quantity: 1,
+                        ),
+                      );
+                    });
+                  } else {
+                    const snackBar = SnackBar(
+                      content: Text('Producto no encontrado'),
+                      behavior: SnackBarBehavior
+                          .floating, // Establecer el comportamiento a flotante
+                    );
 
-                  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  // }
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
                 },
                 textInputAction: TextInputAction.next,
                 controller: codeController,

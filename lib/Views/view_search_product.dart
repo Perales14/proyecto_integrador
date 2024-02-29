@@ -15,14 +15,16 @@ class ViewSearchProduct extends StatefulWidget {
 class _ViewSearchProductState extends State<ViewSearchProduct> {
   TextEditingController codeController = TextEditingController(text: '');
   List<Widget> products = [];
+  List<Product> productsList = [];
   ProductController Pr = ProductController();
   @override
   void initState() {
     super.initState();
+    productsList = Pr.ListProduct();
     products = SearchControll(
       contex: context,
       search: '',
-      products: Pr.ListProduct(),
+      products: productsList,
     ).searchProduct();
   }
 
@@ -55,7 +57,7 @@ class _ViewSearchProductState extends State<ViewSearchProduct> {
                     products = SearchControll(
                             contex: context,
                             search: codeController.text,
-                            products: Pr.ListProduct())
+                            products: productsList)
                         .searchProduct();
                   });
                 },

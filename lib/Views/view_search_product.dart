@@ -26,6 +26,10 @@ class _ViewSearchProductState extends State<ViewSearchProduct> {
     ).searchProduct();
   }
 
+  void selectproduct(Product product) {
+    Navigator.pop(context, product);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,12 +51,6 @@ class _ViewSearchProductState extends State<ViewSearchProduct> {
                 ),
                 controller: codeController,
                 onChanged: (value) {
-                  // products =  SearchControll(search: '', products: [],).searchProduct();
-                  // products = SearchControll(
-                  //   search: codeController.text,
-                  //   products: ProductController().ListProduct(),
-                  // ).searchProduct();
-
                   setState(() {
                     products = SearchControll(
                             contex: context,
@@ -60,10 +58,6 @@ class _ViewSearchProductState extends State<ViewSearchProduct> {
                             products: Pr.ListProduct())
                         .searchProduct();
                   });
-                  // print('');
-                  // print('products.length:   ');
-                  // print(products.length);
-                  // print(products.toString());
                 },
               ),
             ),
@@ -72,32 +66,6 @@ class _ViewSearchProductState extends State<ViewSearchProduct> {
                 : Column(
                     children: products,
                   ),
-            // products.isEmpty
-            //     ? const Text('No hay productos')
-            //     : Expanded(
-            //         // child: Text('Productos'),
-            //         child: ListView.builder(
-            //           itemCount: products.length,
-            //           itemBuilder: (context, index) {
-            //             return ListTile(
-            //               title: Text(
-            //                 (products[index] as ViewProd).product.name,
-            //               ),
-            //               subtitle: Text(
-            //                 (products[index] as ViewProd).product.description,
-            //               ),
-            //               leading: CircleAvatar(
-            //                 child: Text(
-            //                   (products[index] as ViewProd).product.name[0],
-            //                 ),
-            //               ),
-            //               onTap: () {
-            //                 widget.onProductSelected();
-            //               },
-            //             );
-            //           },
-            //         ),
-            //       ),
           ],
         ),
       ),

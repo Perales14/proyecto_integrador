@@ -46,16 +46,34 @@ class _ViewSellState extends State<ViewSell> {
           IconButton(
             onPressed: () {
               Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ViewSearchProduct(
-                    onProductSelected: () {
-                      // setState(() {
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ViewSearchProduct(
+                      onProductSelected: () {
+                        // setState(() {
 
-                      // });
-                    },
-                  ),
-                ),
+                        // });
+                      },
+                    ),
+                  )).then(
+                (value) {
+                  if (value != null) {
+                    Product product = value;
+                    setState(() {
+                      products.add(
+                        ViewSellProduct(
+                          deleteProduct: () {
+                            deleteProduct(product.code);
+                          },
+                          code: product.code,
+                          name: product.name,
+                          unitPrice: double.parse(product.price),
+                          quantity: 1,
+                        ),
+                      );
+                    });
+                  }
+                },
               );
             },
             icon: const Icon(Icons.search),

@@ -3,8 +3,10 @@ import 'package:proyecto_integrador/Controller/Entities/product_controller.dart'
 import 'package:proyecto_integrador/Controller/Validaciones/product_valid.dart';
 import 'package:proyecto_integrador/Entities/product.dart';
 import 'package:proyecto_integrador/Services/drawer.dart';
+import 'package:proyecto_integrador/Views/ViewSingle/view_prod.dart';
 import 'package:proyecto_integrador/Views/ViewSingle/view_product.dart';
 import 'package:proyecto_integrador/Views/ViewSingle/view_sell_product.dart';
+import 'package:proyecto_integrador/Views/view_search_product.dart';
 
 class ViewSell extends StatefulWidget {
   const ViewSell({super.key});
@@ -14,7 +16,7 @@ class ViewSell extends StatefulWidget {
 }
 
 class _ViewSellState extends State<ViewSell> {
-  List<ViewSellProduct> products = [];
+  List<Widget> products = [];
   TextEditingController codeController = TextEditingController();
 
   @override
@@ -25,6 +27,25 @@ class _ViewSellState extends State<ViewSell> {
       ),
       appBar: AppBar(
         title: const Text('Vender'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ViewSearchProduct(
+                    onProductSelected: () {
+                      // setState(() {
+
+                      // });
+                    },
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
@@ -44,33 +65,33 @@ class _ViewSellState extends State<ViewSell> {
               ),
               child: TextField(
                 onSubmitted: (value) {
-                  if (ProductController().searchProduct(
-                    codeController.text,
-                  )) {
-                    Product product = ProductController().GetProduct(
-                      codeController.text,
-                    );
-                    setState(
-                      () {
-                        products.add(
-                          ViewSellProduct(
-                            code: product.code,
-                            name: product.name,
-                            unitPrice: double.parse(product.price),
-                            quantity: 5,
-                          ),
-                        );
-                      },
-                    );
-                  } else {
-                    const snackBar = SnackBar(
-                      content: Text('Producto no encontrado'),
-                      behavior: SnackBarBehavior
-                          .floating, // Establecer el comportamiento a flotante
-                    );
+                  // if (ProductController().searchProduct(
+                  //   codeController.text,
+                  // )) {
+                  //   Product product = ProductController().GetProduct(
+                  //     codeController.text,
+                  //   );
+                  //   setState(
+                  //     () {
+                  //       products.add(
+                  //         ViewSellProduct(
+                  //           code: product.code,
+                  //           name: product.name,
+                  //           unitPrice: double.parse(product.price),
+                  //           quantity: 5,
+                  //         ),
+                  //       );
+                  //     },
+                  //   );
+                  // } else {
+                  //   const snackBar = SnackBar(
+                  //     content: Text('Producto no encontrado'),
+                  //     behavior: SnackBarBehavior
+                  //         .floating, // Establecer el comportamiento a flotante
+                  //   );
 
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
+                  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  // }
                 },
                 textInputAction: TextInputAction.next,
                 controller: codeController,
@@ -88,12 +109,7 @@ class _ViewSellState extends State<ViewSell> {
                     child: ListView.builder(
                       itemCount: products.length,
                       itemBuilder: (context, index) {
-                        return ViewSellProduct(
-                          code: products[index].code,
-                          name: products[index].name,
-                          unitPrice: products[index].unitPrice,
-                          quantity: products[index].quantity,
-                        );
+                        return products[index];
                       },
                     ),
                   ),

@@ -23,7 +23,7 @@ class _ViewSearchProductState extends State<ViewSearchProduct> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Text('Buscar producto'),
+            const Text('Nombre del producto:'),
             TextField(
               controller: codeController,
               onChanged: (value) {

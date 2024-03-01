@@ -4,16 +4,16 @@ class ClientValid {
   void validClient(
     namecontroller,
     lastnamecontroller,
-    emailcontroller,
+    // emailcontroller,
     phonecontroller,
-    addresscontroller,
+    // addresscontroller,
     codecontroller,
   ) {
     if (namecontroller.text == '' ||
         lastnamecontroller.text == '' ||
-        emailcontroller.text == '' ||
+        // emailcontroller.text == '' ||
         phonecontroller.text == '' ||
-        addresscontroller.text == '' ||
+        // addresscontroller.text == '' ||
         codecontroller.text == '') {
       print('Faltan datos');
       return;
@@ -22,9 +22,9 @@ class ClientValid {
       ClientController().AddClient(
         namecontroller,
         lastnamecontroller,
-        emailcontroller,
+        // emailcontroller,
         phonecontroller,
-        addresscontroller,
+        // addresscontroller,
         codecontroller,
       );
     }

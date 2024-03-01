@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/Controller/Entities/category_controller.dart';
 import 'package:proyecto_integrador/Entities/category.dart';
+import 'package:proyecto_integrador/Views/ViewEdit/view_edit_category.dart';
 
 // class ViewCategory extends StatefulWidget {
 //   @override
@@ -38,6 +39,14 @@ class ListCategoryWidget extends StatelessWidget {
         subtitle: Text('Descripcion: ${category.description}'),
         onTap: () {
           print('Tocaste la categoria: ${category.name}');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditCategory(
+                category: category,
+              ),
+            ),
+          );
         },
         trailing: IconButton(
           icon: const Icon(Icons.delete),

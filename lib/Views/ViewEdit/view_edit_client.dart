@@ -14,9 +14,9 @@ class EditClient extends StatefulWidget {
 class _EditClientState extends State<EditClient> {
   TextEditingController namecontroller = TextEditingController();
   TextEditingController lastnamecontroller = TextEditingController();
-  TextEditingController emailcontroller = TextEditingController();
+  // TextEditingController emailcontroller = TextEditingController();
   TextEditingController phonecontroller = TextEditingController();
-  TextEditingController addresscontroller = TextEditingController();
+  // TextEditingController addresscontroller = TextEditingController();
   TextEditingController codecontroller = TextEditingController();
 
   @override
@@ -24,9 +24,9 @@ class _EditClientState extends State<EditClient> {
     super.initState();
     namecontroller.text = widget.client.name;
     lastnamecontroller.text = widget.client.lastName;
-    emailcontroller.text = widget.client.email;
+    // emailcontroller.text = widget.client.email;
     phonecontroller.text = widget.client.phone;
-    addresscontroller.text = widget.client.address;
+    // addresscontroller.text = widget.client.address;
     codecontroller.text = widget.client.code;
   }
 
@@ -46,9 +46,9 @@ class _EditClientState extends State<EditClient> {
             ClientValid().validClient(
               namecontroller,
               lastnamecontroller,
-              emailcontroller,
+              // emailcontroller,
               phonecontroller,
-              addresscontroller,
+              // addresscontroller,
               codecontroller,
             );
             Navigator.pop(context);
@@ -70,17 +70,17 @@ class _EditClientState extends State<EditClient> {
           nombres: const [
             'Nombre',
             'Apellido',
-            'Correo',
+            // 'Correo',
             'Telefono',
-            'Direccion',
+            // 'Direccion',
             'Codigo',
           ],
           datos: [
             namecontroller,
             lastnamecontroller,
-            emailcontroller,
+            // emailcontroller,
             phonecontroller,
-            addresscontroller,
+            // addresscontroller,
             codecontroller,
           ],
         ),

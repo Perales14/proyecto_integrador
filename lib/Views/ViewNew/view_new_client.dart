@@ -13,9 +13,9 @@ class ViewNewClient extends StatefulWidget {
 class _ViewNewClientState extends State<ViewNewClient> {
   TextEditingController namecontroller = TextEditingController();
   TextEditingController lastnamecontroller = TextEditingController();
-  TextEditingController emailcontroller = TextEditingController();
+  // TextEditingController emailcontroller = TextEditingController();
   TextEditingController phonecontroller = TextEditingController();
-  TextEditingController addresscontroller = TextEditingController();
+  // TextEditingController addresscontroller = TextEditingController();
   TextEditingController codecontroller = TextEditingController();
 
   @override
@@ -33,9 +33,9 @@ class _ViewNewClientState extends State<ViewNewClient> {
             ClientValid().validClient(
               namecontroller,
               lastnamecontroller,
-              emailcontroller,
+              // emailcontroller,
               phonecontroller,
-              addresscontroller,
+              // addresscontroller,
               codecontroller,
             );
             Navigator.pop(context);
@@ -58,17 +58,17 @@ class _ViewNewClientState extends State<ViewNewClient> {
           nombres: const [
             'Nombre',
             'Apellido',
-            'Correo',
+            // 'Correo',
             'Telefono',
-            'Direccion',
+            // 'Direccion',
             'Codigo',
           ],
           datos: [
             namecontroller,
             lastnamecontroller,
-            emailcontroller,
+            // emailcontroller,
             phonecontroller,
-            addresscontroller,
+            // addresscontroller,
             codecontroller,
           ],
         ),

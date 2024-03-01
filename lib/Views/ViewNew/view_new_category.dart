@@ -45,7 +45,9 @@ class _ViewNewCategoryState extends State<ViewNewCategory> {
           leadingappbar: false,
           tittle: 'Nueva categoria',
           icon: const Icon(Icons.cancel_outlined),
-          onpressedcancel: () {},
+          onpressedcancel: () {
+            Navigator.pop(context);
+          },
           nombres: const [
             'Nombre',
             'Descripcion',

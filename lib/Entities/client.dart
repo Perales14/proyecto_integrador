@@ -11,16 +11,16 @@ class Client {
   // });
   String name;
   String lastName;
-  String email;
+  // String email;
   String phone;
-  String address;
+  // String address;
   String code;
   Client({
     this.code = '',
     this.name = '',
     this.lastName = '',
-    this.email = '',
+    // this.email = '',
     this.phone = '',
-    this.address = '',
+    // this.address = '',
   });
 }

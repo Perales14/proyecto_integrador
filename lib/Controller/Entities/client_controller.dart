@@ -7,9 +7,9 @@ class ClientController {
   void AddClient(
     TextEditingController nameController,
     TextEditingController lastNameController,
-    TextEditingController emailController,
+    // TextEditingController emailController,
     TextEditingController phoneController,
-    TextEditingController addressController,
+    // TextEditingController addressController,
     TextEditingController codeController,
   ) {
     _AddClientObject(
@@ -17,9 +17,9 @@ class ClientController {
         code: codeController.text,
         name: nameController.text,
         lastName: lastNameController.text,
-        email: emailController.text,
+        // email: emailController.text,
         phone: phoneController.text,
-        address: addressController.text,
+        // address: addressController.text,
       ),
     );
   }
@@ -29,9 +29,9 @@ class ClientController {
     await clients.put(client.code, {
       'nombre': client.name,
       'apellido': client.lastName,
-      'email': client.email,
+      // 'email': client.email,
       'telefono': client.phone,
-      'direccion': client.address,
+      // 'direccion': client.address,
       'codigo': client.code,
     });
     print('Cliente agregado');
@@ -55,9 +55,9 @@ class ClientController {
         code: client['codigo'],
         name: client['nombre'],
         lastName: client['apellido'],
-        email: client['email'],
+        // email: client['email'],
         phone: client['telefono'],
-        address: client['direccion'],
+        // address: client['direccion'],
       );
     } else {
       return Client();
@@ -83,9 +83,9 @@ class ClientController {
             code: clients.getAt(i)['codigo'],
             name: clients.getAt(i)['nombre'],
             lastName: clients.getAt(i)['apellido'],
-            email: clients.getAt(i)['email'],
+            // email: clients.getAt(i)['email'],
             phone: clients.getAt(i)['telefono'],
-            address: clients.getAt(i)['direccion'],
+            // address: clients.getAt(i)['direccion'],
           ),
         );
       }

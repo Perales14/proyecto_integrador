@@ -37,6 +37,61 @@ class _ViewSellState extends State<ViewSell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      persistentFooterButtons: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            onPressed: () {
+              if (products.isNotEmpty) {
+                double total = 0;
+                for (var element in products) {
+                  if (element is ViewSellProduct) {
+                    total += element.quantity * element.unitPrice;
+                  }
+                }
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Total'),
+                      content: Text('El total es: $total'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Cancelar'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            products.clear();
+                            Navigator.pop(context);
+                            setState(() {});
+                          },
+                          child: const Text('Aceptar'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              } else {
+                const snackBar = SnackBar(
+                  content: Text('No hay pr,,oductos'),
+                  behavior: SnackBarBehavior
+                      .floating, // Establecer el comportamiento a flotante
+                );
+
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
+            },
+            child: const Icon(
+              Icons.shopping_cart,
+              size: 35,
+              // color: Colors.black,
+            ),
+          ),
+        ),
+      ],
       drawer: const MyDrawer(
         headerText: 'Vender',
       ),
@@ -146,6 +201,23 @@ class _ViewSellState extends State<ViewSell> {
           ],
         ),
       ),
+      // bottomNavigationBar: (
+      // ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     if (products.isNotEmpty) {
+      //     } else {
+      //       const snackBar = SnackBar(
+      //         content: Text('No hay productos'),
+      //         behavior: SnackBarBehavior
+      //             .floating, // Establecer el comportamiento a flotante
+      //       );
+
+      //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      //     }
+      //   },
+      //   child: const Icon(Icons.shopping_cart),
+      // ),
     );
   }
 }

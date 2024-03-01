@@ -48,13 +48,7 @@ class _ViewCategoryState extends State<ViewCategorys> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ViewNewCategory()),
-            ).then(
-              (value) => {
-                setState(
-                  () {},
-                ),
-              },
-            );
+            ).whenComplete(() => setState(() {}));
           },
           backgroundColor: Colors.blue,
           child: const Icon(Icons.add),

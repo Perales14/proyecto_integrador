@@ -37,6 +37,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  # pdf, pathprovider y open_file
+  pdf: ^3.3.0
+  path_provider: ^2.0.2
+  open_file: ^3.2.1
+  
 
 dev_dependencies:
   flutter_test:

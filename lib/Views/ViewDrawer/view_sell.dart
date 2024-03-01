@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/Controller/Entities/client_controller.dart';
 import 'package:proyecto_integrador/Controller/Entities/product_controller.dart';
 import 'package:proyecto_integrador/Controller/Validaciones/product_valid.dart';
+import 'package:proyecto_integrador/Entities/client.dart';
 import 'package:proyecto_integrador/Entities/product.dart';
 import 'package:proyecto_integrador/Services/drawer.dart';
 import 'package:proyecto_integrador/Views/ViewSingle/view_prod.dart';
@@ -18,7 +20,38 @@ class ViewSell extends StatefulWidget {
 class _ViewSellState extends State<ViewSell> {
   List<Widget> products = [];
   ProductController Pr = ProductController();
+  ClientController Cl = ClientController();
   TextEditingController codeController = TextEditingController();
+  DropdownButton cas = DropdownButton(
+    value: null,
+    items: const [],
+    onChanged: (value) {},
+  );
+  String currentclient = '';
+  List<Client> clients = [];
+  @override
+  void initState() {
+    super.initState();
+    // clients = clients;
+    clients = Cl.ListClient();
+    currentclient = clients[0].name;
+    cas = DropdownButton(
+      value: currentclient,
+      items: clients
+          .map(
+            (client) => DropdownMenuItem(
+              value: client.name,
+              child: Text(client.name),
+            ),
+          )
+          .toList(),
+      onChanged: (value) {
+        setState(() {
+          currentclient = value.toString();
+        });
+      },
+    );
+  }
 
   void deleteProduct(String code) {
     setState(() {
@@ -53,8 +86,17 @@ class _ViewSellState extends State<ViewSell> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: const Text('Total'),
-                      content: Text('El total es: $total'),
+                      // title: const Text('Total'),
+                      // content: Text('El total es: $total'),
+                      title: const Text('Venta'),
+                      content: Column(
+                        children: [
+                          Text('El total es: $total'),
+                          Text(
+                            'Cliente: $currentclient',
+                          ),
+                        ],
+                      ),
                       actions: [
                         TextButton(
                           onPressed: () {
@@ -62,6 +104,10 @@ class _ViewSellState extends State<ViewSell> {
                           },
                           child: const Text('Cancelar'),
                         ),
+                        TextButton(
+                            child: const Text('Aceptar'),
+                            //hacer que el onpresserd sea para imprimir los productos con el pdf
+                            onPressed: () {}),
                         TextButton(
                           onPressed: () {
                             products.clear();
@@ -100,6 +146,7 @@ class _ViewSellState extends State<ViewSell> {
         actions: [
           IconButton(
             onPressed: () {
+              print('presiono el boton de buscar');
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -140,6 +187,7 @@ class _ViewSellState extends State<ViewSell> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            cas,
             const Padding(
               padding: EdgeInsets.only(left: 12.0),
               child: Text('Código de barras'),
@@ -189,7 +237,10 @@ class _ViewSellState extends State<ViewSell> {
               ),
             ),
             products.isEmpty
-                ? const Text('No hay productos')
+                ? const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text('No hay productos'),
+                  )
                 : Expanded(
                     child: ListView.builder(
                       itemCount: products.length,

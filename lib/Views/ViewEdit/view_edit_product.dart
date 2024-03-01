@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/Controller/Entities/category_controller.dart';
 import 'package:proyecto_integrador/Controller/Entities/product_controller.dart';
 import 'package:proyecto_integrador/Controller/Validaciones/product_valid.dart';
+import 'package:proyecto_integrador/Entities/category.dart';
 import 'package:proyecto_integrador/Entities/product.dart';
 import 'package:proyecto_integrador/Template/view_template.dart';
 
@@ -34,7 +36,13 @@ class EditProductState extends State<EditProduct> {
   TextEditingController quantitycontroller = TextEditingController();
   TextEditingController pricecontroller = TextEditingController();
   TextEditingController codecontroller = TextEditingController();
-
+  List<Category> categorias = [];
+  String currentCategory = '';
+  DropdownButton cas = DropdownButton(
+    value: null,
+    items: const [],
+    onChanged: (value) {},
+  );
   @override
   void initState() {
     super.initState();
@@ -44,6 +52,28 @@ class EditProductState extends State<EditProduct> {
     quantitycontroller.text = widget.product.quantity;
     pricecontroller.text = widget.product.price;
     codecontroller.text = widget.product.code;
+    categorias = CategoryController().ListCategories();
+    currentCategory = widget.product.category;
+
+    print('currentCategory: $currentCategory');
+
+    cas = DropdownButton(
+      // value: widget.product.category,
+      value: currentCategory,
+      items: categorias
+          .map(
+            (categoria) => DropdownMenuItem(
+              value: categoria.name,
+              child: Text(categoria.name),
+            ),
+          )
+          .toList(),
+      onChanged: (categoria) {
+        currentCategory = categoria.toString();
+        print(categorycontroller.text);
+        setState(() {});
+      },
+    );
   }
 
   @override
@@ -59,6 +89,7 @@ class EditProductState extends State<EditProduct> {
             //guarda los cambios en el producto con Id "codigo"
             // print(namecontroller.text);
             // ProductController().AddProduct
+            categorycontroller.text = currentCategory;
             ProductValid().validProduct(
               namecontroller,
               descriptioncontroller,
@@ -77,40 +108,7 @@ class EditProductState extends State<EditProduct> {
       ),
       body: SingleChildScrollView(
         child: ViewTemplate(
-          // cat: Combobox(),
-          // cat: const SizedBox(),
-          //poner en cat un comboobox
-          cat: DropdownButton<String>(
-            // value: categorycontroller.text,
-            // value: categorycontroller.text,
-            onChanged: (String? newValue) {
-              setState(() {
-                categorycontroller.text = newValue!;
-              });
-            },
-            items: <String>[
-              'Categoria 1',
-              'Categoria 2',
-              'Categoria 3',
-              'Categoria 4'
-            ].map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            // items: <String>[
-            //   'Categoria 1',
-            //   'Categoria 2',
-            //   'Categoria 3',
-            //   'Categoria 4'
-            // ].map<DropdownMenuItem<String>>((String value) {
-            //   return DropdownMenuItem<String>(
-            //     value: value,
-            //     child: Text(value),
-            //   );
-            // }).toList(),
-          ),
+          dropdownButton: cas,
           leadingappbar: false,
           tittle: 'Editar Producto',
           icon: const Icon(Icons.cancel),
@@ -125,7 +123,7 @@ class EditProductState extends State<EditProduct> {
           nombres: const [
             'Nombre',
             'Descripción',
-            'Categoría',
+            // 'Categoría',
             'Cantidad',
             'Precio',
             'Código'
@@ -133,7 +131,7 @@ class EditProductState extends State<EditProduct> {
           datos: [
             namecontroller,
             descriptioncontroller,
-            categorycontroller,
+            // categorycontroller,
             quantitycontroller,
             pricecontroller,
             codecontroller,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/Controller/Entities/category_controller.dart';
 import 'package:proyecto_integrador/Entities/category.dart';
 
 // class ViewCategory extends StatefulWidget {
@@ -36,13 +37,13 @@ class ListCategoryWidget extends StatelessWidget {
         title: Text('Nombre: ${category.name}'),
         subtitle: Text('Descripcion: ${category.description}'),
         onTap: () {
-          print('Tocaste la categoria: $category');
+          print('Tocaste la categoria: ${category.name}');
         },
         trailing: IconButton(
           icon: const Icon(Icons.delete),
           onPressed: () {
             print('Tocaste el boton de borrar');
-            // CategoryController().DeleteCategory(category.code);
+            CategoryController().DeleteCategory(category.code);
             setstate();
           },
         ),

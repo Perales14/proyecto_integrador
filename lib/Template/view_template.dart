@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/Entities/category.dart';
 
 class ViewTemplate extends StatefulWidget {
   final String tittle;
@@ -7,7 +10,9 @@ class ViewTemplate extends StatefulWidget {
   final List<String> nombres;
   final List<TextEditingController> datos;
   final bool leadingappbar;
-  final Widget cat;
+  // final List<Category> categorias;
+  final DropdownButton? dropdownButton;
+  // Function()? update;
   const ViewTemplate({
     super.key,
     required this.leadingappbar,
@@ -16,11 +21,10 @@ class ViewTemplate extends StatefulWidget {
     required this.onpressedcancel,
     required this.nombres,
     required this.datos,
-    //usar un widget que no modifique la vista (de constante)
-    this.cat = const SizedBox(
-      height: 0.0,
-      width: 0.0,
-    ),
+    //opcionales
+    // this.categorias = const [],
+    this.dropdownButton,
+    // this.update,
   });
 
   @override
@@ -29,9 +33,12 @@ class ViewTemplate extends StatefulWidget {
 
 class ViewTemplateState extends State<ViewTemplate> {
   List<Widget> lista = [];
+  String currentCategory = '';
+
   @override
   void initState() {
     super.initState();
+    // currentCategory = widget.categorias[0].code;
     for (int i = 0; i < widget.nombres.length; i++) {
       lista.add(
         Text(widget.nombres[i]),
@@ -53,9 +60,11 @@ class ViewTemplateState extends State<ViewTemplate> {
         ),
       );
     }
-
-    //agregar en la posicion 5 el widget cat
-    // lista.insert(5, widget.cat);
+    if (widget.dropdownButton != null) {
+      lista.insert(4, widget.dropdownButton!);
+    } else {
+      print('no entro');
+    }
   }
 
   @override

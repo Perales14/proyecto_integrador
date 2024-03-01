@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/Controller/Entities/category_controller.dart';
 import 'package:proyecto_integrador/Controller/Entities/product_controller.dart';
+import 'package:proyecto_integrador/Entities/category.dart';
 import 'package:proyecto_integrador/Services/drawer.dart';
 import 'package:proyecto_integrador/Views/ViewList/list_product.dart';
 import 'package:proyecto_integrador/Views/ViewNew/view_new_producct.dart';
@@ -11,6 +13,13 @@ class ViewStorage extends StatefulWidget {
 }
 
 class ViewStorageState extends State<ViewStorage> {
+  List<Category> categorias = [];
+  @override
+  void initState() {
+    super.initState();
+    categorias = CategoryController().ListCategories();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,16 +45,37 @@ class ViewStorageState extends State<ViewStorage> {
         child: FloatingActionButton(
           onPressed: () {
             print('Si toco el boton agregar');
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ViewNewProduct()),
-            ).then(
-              (value) => {
-                setState(
-                  () {},
-                ),
-              },
-            );
+            if (categorias.isEmpty) {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('No hay categorias'),
+                    content: const Text('Debe agregar una categoria primero'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Ok'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ViewNewProduct()),
+              ).whenComplete(() => setState(() {}));
+            }
+            // then(
+            //   (value) => {
+            //     setState(
+            //       () {},
+            //     ),
+            //   },
+            // );
           },
           backgroundColor: Colors.blue,
           child: const Icon(Icons.add),

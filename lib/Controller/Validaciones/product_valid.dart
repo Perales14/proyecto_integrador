@@ -11,7 +11,7 @@ class ProductValid {
     TextEditingController codeController,
   ) {
     if (nameController.text.isEmpty) {
-      print('nameController.text.isEmpty');
+      print('nameController.texmpty');
       return false;
     }
     if (descriptionController.text.isEmpty) {
